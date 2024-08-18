@@ -1,0 +1,10 @@
+rm(list = ls())
+library(corrplot)
+library(pheatmap)
+library(ggsci)
+
+data<-read.csv("eFig 1b.csv",header = T,row.names = 1)
+matrix <- cor(data, use="complete.obs", method= c("pearson"))
+col1 <- colorRampPalette(c("#FFFFFF", "#CBC5E3", "#3A4798"))
+corrplot(matrix, type ="upper", method = "pie", tl.pos = "r", tl.col =" black", tl.offset = 1, tl.srt = 0, col.lim = c(0, 1), col=col1(100))
+corrplot(matrix, add = T, type ="lower", method ="number", col ="black", diag = F, tl.pos ="n", cl.pos ="n", number.digits = 3)
